@@ -5,7 +5,6 @@ Do not use this on a local machine, especially not as an admin!
 
 import os
 import sys
-from IPython import get_ipython
 from subprocess import Popen, PIPE
 
 r = Popen(["pip", "install", "rich"])
@@ -92,40 +91,6 @@ if __name__ == "__main__":
             "could not install mamba :sob:",
             ":mag: Done."
         )
-
-        # run_and_check(
-        #     ["mamba", "install", "-n", "base", "-y",
-        #      "-c", "conda-forge", "-c", "bioconda", "-c", "qiime2",
-        #      "-c", "https://packages.qiime2.org/qiime2/2025.4/moshpit/passed/",
-        #      "-c", "defaults",
-        #      "qiime2=2025.4", "q2cli", "q2templates", 
-        #      "q2-composition",
-        #      "q2-diversity", "q2-diversity-lib", "q2-emperor",
-        #      "q2-feature-table", "shortuuid", "bs4",
-        #      "q2-metadata",
-        #      "q2-sample-classifier", "q2-quality-control",
-        #      "q2-taxa", "q2-types", "ipykernel"],
-        #     "QIIME is caching",
-        #     ":mag: Installing QIIME 2. This may take a little bit.\n :clock1:",
-        #     "could not install QIIME 2 :sob:",
-        #     ":mag: Done."
-        # )
-
-        # run_and_check(
-        #     ["pip", "install", "git+https://github.com/bokulich-lab/q2-assembly.git"],
-        #     "Successfully installed q2-assembly",
-        #     ":evergreen_tree: Installing q2-assembly...",
-        #     "could not install q2-assembly :sob:",
-        #     ":evergreen_tree: Done."
-        # )
-
-        # run_and_check(
-        #     ["pip", "install", "git+https://github.com/bokulich-lab/q2-annotate.git"],
-        #     "Successfully installed q2-annotate",
-        #     ":evergreen_tree: Installing q2-annotate...",
-        #     "could not install q2-annotate :sob:",
-        #     ":evergreen_tree: Done."
-        # )
 
         run_and_check(
             ["wget", "https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-moshpit-ubuntu-latest-conda.yml"],
