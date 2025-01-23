@@ -136,7 +136,7 @@ if __name__ == "__main__":
         )
 
         run_and_check(
-            ["mamba", "env", "create", "-n", "moshpit-dev" "-y",
+            ["mamba", "env", "create", "-n", "moshpit-dev", "-y",
              "--file", "qiime2-moshpit-ubuntu-latest-conda.yml"],
             "QIIME is caching",
             ":mag: Installing MOSHPIT. This may take a little bit.\n :clock1:",
