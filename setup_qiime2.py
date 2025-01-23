@@ -5,6 +5,7 @@ Do not use this on a local machine, especially not as an admin!
 
 import os
 import sys
+from IPython import get_ipython
 from subprocess import Popen, PIPE
 
 r = Popen(["pip", "install", "rich"])
@@ -92,49 +93,66 @@ if __name__ == "__main__":
             ":mag: Done."
         )
 
+        # run_and_check(
+        #     ["mamba", "install", "-n", "base", "-y",
+        #      "-c", "conda-forge", "-c", "bioconda", "-c", "qiime2",
+        #      "-c", "https://packages.qiime2.org/qiime2/2025.4/moshpit/passed/",
+        #      "-c", "defaults",
+        #      "qiime2=2025.4", "q2cli", "q2templates", 
+        #      "q2-composition",
+        #      "q2-diversity", "q2-diversity-lib", "q2-emperor",
+        #      "q2-feature-table", "shortuuid", "bs4",
+        #      "q2-metadata",
+        #      "q2-sample-classifier", "q2-quality-control",
+        #      "q2-taxa", "q2-types", "ipykernel"],
+        #     "QIIME is caching",
+        #     ":mag: Installing QIIME 2. This may take a little bit.\n :clock1:",
+        #     "could not install QIIME 2 :sob:",
+        #     ":mag: Done."
+        # )
+
+        # run_and_check(
+        #     ["pip", "install", "git+https://github.com/bokulich-lab/q2-assembly.git"],
+        #     "Successfully installed q2-assembly",
+        #     ":evergreen_tree: Installing q2-assembly...",
+        #     "could not install q2-assembly :sob:",
+        #     ":evergreen_tree: Done."
+        # )
+
+        # run_and_check(
+        #     ["pip", "install", "git+https://github.com/bokulich-lab/q2-annotate.git"],
+        #     "Successfully installed q2-annotate",
+        #     ":evergreen_tree: Installing q2-annotate...",
+        #     "could not install q2-annotate :sob:",
+        #     ":evergreen_tree: Done."
+        # )
+
         run_and_check(
-            ["mamba", "install", "-n", "base", "-y",
-             "-c", "conda-forge", "-c", "bioconda", "-c", "qiime2",
-             "-c", "https://packages.qiime2.org/qiime2/2025.4/moshpit/passed/",
-             "-c", "defaults",
-             "qiime2=2025.4", "q2cli", "q2templates", 
-             "q2-composition",
-             "q2-diversity", "q2-diversity-lib", "q2-emperor",
-             "q2-feature-table", "shortuuid", "bs4",
-             "q2-metadata",
-             "q2-sample-classifier", "q2-quality-control",
-             "q2-taxa", "q2-types", "ipykernel"],
+            ["wget", "https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-moshpit-ubuntu-latest-conda.yml"],
+            "saved",
+            ":evergreen_tree: Fetching the environment file...",
+            "could not execute wget :sob:",
+            ":evergreen_tree: Done."
+        )
+
+        run_and_check(
+            ["mamba", "env", "create", "-n", "moshpit-dev" "-y",
+             "--file", "qiime2-moshpit-ubuntu-latest-conda.yml"],
             "QIIME is caching",
-            ":mag: Installing QIIME 2. This may take a little bit.\n :clock1:",
-            "could not install QIIME 2 :sob:",
+            ":mag: Installing MOSHPIT. This may take a little bit.\n :clock1:",
+            "could not install MOSHPIT :sob:",
             ":mag: Done."
         )
 
-        run_and_check(
-            ["pip", "install", "git+https://github.com/bokulich-lab/q2-assembly.git"],
-            "Successfully installed q2-assembly",
-            ":evergreen_tree: Installing q2-assembly...",
-            "could not install q2-assembly :sob:",
-            ":evergreen_tree: Done."
-        )
-
-        run_and_check(
-            ["pip", "install", "git+https://github.com/bokulich-lab/q2-annotate.git"],
-            "Successfully installed q2-annotate",
-            ":evergreen_tree: Installing q2-annotate...",
-            "could not install q2-annotate :sob:",
-            ":evergreen_tree: Done."
-        )
-
     else:
-        con.log(":mag: QIIME 2 is already installed. Skipped.")
+        con.log(":mag: MOSH is already installed. Skipped.")
 
     run_and_check(
-        ["qiime", "info"],
+        ["mamba", "run", "-n", "moshpit-dev", "-r", "/usr/local", "mosh" ,"info"],
         "QIIME 2 release:",
-        ":bar_chart: Checking that QIIME 2 command line works...",
-        "QIIME 2 command line does not seem to work :sob:",
-        ":bar_chart: QIIME 2 command line looks good :tada:"
+        ":bar_chart: Checking that MOSHPIT command line works...",
+        "MOSHPIT command line does not seem to work :sob:",
+        ":bar_chart: MOSHPIT command line looks good :tada:"
     )
 
     if sys.version_info[0:2] == (3, 8):
@@ -161,4 +179,4 @@ if __name__ == "__main__":
     cleanup()
 
     con.log("[green]Everything is A-OK. "
-            "You can start using QIIME 2 now :thumbs_up:[/green]")
+            "You can start using MOSHPIT now :thumbs_up:[/green]")
