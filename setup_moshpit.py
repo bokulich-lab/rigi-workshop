@@ -109,6 +109,24 @@ if __name__ == "__main__":
             ":mag: Done."
         )
 
+        run_and_check(
+            ["mamba", "run", "-n", "moshpit-dev", "pip", "install",
+             "git+https://github.com/misialq/q2-annotate.git@exclusive-feature"],
+            "Successfully installed",
+            ":mag: Updating q2-annotate...",
+            "Error :sob:",
+            ":mag: Done."
+        )
+
+        run_and_check(
+            ["mamba", "run", "-n", "moshpit-dev", "qiime", "dev",
+             "refresh-cache"],
+            "QIIME is caching",
+            ":mag: Refreshing QIIME 2 cache...",
+            "Error :sob:",
+            ":mag: Done."
+        )
+
     else:
         con.log(":mag: MOSH is already installed. Skipped.")
 

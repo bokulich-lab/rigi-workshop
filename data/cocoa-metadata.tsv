@@ -2,11 +2,11 @@ id	timepoint	seed	stage
 SRR9640346	0	Forasteiro	early
 SRR9640343	0	Hybrid	early
 SRR9640355	24	Hybrid	early
-SRR9640352	72	Forasteiro	early
+SRR9640352	72	Forasteiro	mid
 SRR9640356	24	Forasteiro	early
-SRR9640351	72	Hybrid	early
-SRR9640345	96	Forasteiro	late
-SRR9640344	96	Hybrid	late
+SRR9640351	72	Hybrid	mid
+SRR9640345	96	Forasteiro	mid
+SRR9640344	96	Hybrid	mid
 SRR9640353	48	Hybrid	early
 SRR9640354	48	Forasteiro	early
 SRR9646966	144	Hybrid	late
